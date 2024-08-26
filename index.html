@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<!-- made by redspacecat 2024 -->
+<head>
+    <title>HTML Viewer</title>
+    <style>
+        #html-code {
+            width: 50%;
+            border: 1px solid black;
+            resize: none;
+            margin: 5px;
+            margin-right: 2.5px;
+            overflow: scroll;
+        }
+
+        #html-result {
+            width: 50%;
+            border: 1px solid black;
+            margin: 5px;
+            margin-left: 2.5px;
+        }
+
+        .container {
+            display: flex;
+        }
+
+        body {
+            margin: 0px;
+        }
+
+        #run {
+            margin: 5px;
+            margin-bottom: 0px;
+        }
+
+        iframe {
+            border: none;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+<button type="button" id="run" onclick="run()">Run</button>
+<div class="container">
+    <textarea id="html-code" is="highlighted-code" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>
+    <div id="html-result"></div>
+</div>
+</body>
+
+<script>
+    document.getElementById("html-code").style.height = `calc(100vh - 20px - ${document.getElementById("run").offsetHeight}px)`
+    document.getElementById("html-code").addEventListener("input", updateResult)
+
+
+    function run() {
+        let ifr = document.createElement("iframe")
+        ifr.srcdoc = document.getElementById("html-code").value
+        document.getElementById("html-result").innerHTML = ""
+        document.getElementById("html-result").appendChild(ifr)
+    }
+
+    function updateResult() {
+        if (false) {
+            run()
+        }
+    }
+
+    </script>
+    
+    <script type="module">
+        (async ({ chrome, netscape }) => { if (!chrome && !netscape) await import('https://unpkg.com/@ungap/custom-elements'); const { default: HighlightedCode } = await import('https://cdn.jsdelivr.net/gh/WebReflection/highlighted-code/web.js'); HighlightedCode.useTheme('github'); })(self);
+    </script>
+
+</html>
